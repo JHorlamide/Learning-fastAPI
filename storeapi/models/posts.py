@@ -1,4 +1,12 @@
+from typing import Any, Optional
+
 from pydantic import BaseModel
+
+
+class GenericResponseModel(BaseModel):
+    data: Optional[Any] = None
+    message: str
+    status: str
 
 
 class UserPostIn(BaseModel):
@@ -21,9 +29,4 @@ class Comment(CommentIn):
 class UserPostWithComments(BaseModel):
     post: UserPost
     comments: list[Comment]
-
-
-{
-    "post": {"id": 0, "body": "My post"},
-    "comments": [{"id": 0, "post_id": 0, "body": "My post"}],
-}
+    comments: list[Comment]
